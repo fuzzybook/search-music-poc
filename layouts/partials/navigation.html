@@ -1,0 +1,73 @@
+<section class="sticky-top navigation">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand p-0" href="{{ .Site.BaseURL | relLangURL }}">
+                {{ if .Site.Params.logo }}
+                    <img
+                            class="img-fluid logo"
+                            style="max-height: 22px"
+                            src="{{ .Site.Params.logo | absURL }}"
+                            alt="{{ .Site.Title }}"
+                    />
+                {{ else }} {{ .Site.Title }} {{ end }}
+            </a>
+
+            <button
+                    class="navbar-toggler rounded-0"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navigation">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ $.Site.BaseURL | relLangURL }}#body">{{ .Site.Params.home }}</a>
+                    </li>
+                    {{ if .IsHome }} {{ range .Site.Menus.main }}
+                        <li class="nav-item">
+                            {{ if .Pre}}
+                                <a
+                                        class="nav-link"
+                                        href="{{ printf "%s/pastelle" .URL | absURL  }}"
+                                >{{ .Name }}</a
+                                >
+                            {{else}}
+                                <a class="nav-link" href="#{{ .URL }}">{{ .Name }}</a>
+                            {{end}}
+                        </li>
+                    {{ end }} {{ else }} {{ range .Site.Menus.main }}
+                        <li class="nav-item">
+                            {{ if .Pre }}
+                                <a
+                                        class="nav-link"
+                                        href="{{ printf "%s/pastelle" .URL | absURL  }}"
+                                >{{ .Name }}</a
+                                >
+                            {{else}}
+                                <a
+                                        class="nav-link"
+                                        href="{{ $.Site.BaseURL | relLangURL }}#{{ .URL }}"
+                                >{{ .Name }}</a
+                                >
+                            {{end}}
+                        </li>
+                    {{ end }} {{ end }} {{ range .Site.Menus.static }}
+                        <li class="nav-item">
+                            <a class="nav-link" target="_blank" href="{{ .URL }}"
+                            >{{ .Name }}</a
+                            >
+                        </li>
+                    {{ end }}
+                </ul>
+
+            </div>
+        </nav>
+
+    </div>
+    <div style="padding: 1rem; line-height: 1;">
+        <div id="pastelle-player"></div>
+    </div>
+</section>

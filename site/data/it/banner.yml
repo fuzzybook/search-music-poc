@@ -1,0 +1,12 @@
+############################### Banner ################################
+banner:
+  enable : true
+  bg_image_webp : "images/backgrounds/music.webp"
+  bg_image : "images/backgrounds/music.jpg"
+  icon : "" # themify icon pack : https://themify.me/themify-icons
+  title : "Sync Sprint"
+  content : "Tracce nuove di alta qualità a tua disposizione. Inizia una nuova esperienza, migliora la tua produttività!"
+  button:
+    enable : true
+    label : "Inizia adesso"
+    link : "#services"

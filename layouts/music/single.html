@@ -1,0 +1,55 @@
+{{ define "main" }}
+
+{{ partial "navigation.html" . }}
+
+<section class="section section-bg section-music">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-10 mx-auto">
+				<div  class="title text-center">
+					<h2>{{ with i18n "aboutMusic" }} {{ index (split . " ") 0 }} {{ end }}<span class="color">
+							{{ with i18n "aboutMusic" }} {{ index (split . " ") 1 }} {{ end }}
+							{{ with i18n "aboutMusic" }} {{ index (split . " ") 2 }} {{ end }}</span></h2>
+					<div class="border-meghna"></div>
+				</div>
+				<div class="content text-center">
+					<div>
+						{{ $worker := resources.Get "workers/worker.js"}}
+						{{ $db := resources.Get "data/data.json"}}
+						<div id="search" worker="{{ $worker.Permalink }}" db="{{$db.Permalink}}"></div>
+					</div>
+
+					<div class="pastelle-results">
+						<div class="search-result" id="search-result"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section section-playlist">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="title text-center">
+					<h2>
+						{{ with i18n "musicPlayList" }} {{ index (split . " ") 0 }} {{ end }}
+						<span class="color">
+							{{ with i18n "musicPlayList" }} {{ index (split . " ") 1 }} {{ end }}
+							{{ with i18n "musicPlayList" }} {{ index (split . " ") 2 }} {{ end }}
+							{{ with i18n "musicPlayList" }} {{ index (split . " ") 3 }} {{ end }}
+							{{ with i18n "musicPlayList" }} {{ index (split . " ") 4 }} {{ end }}
+						</span>
+					</h2>
+					<div class="border-meghna"></div>
+				</div>
+			</div>
+			{{ range where .Site.RegularPages "Params.author" .Title }}
+			{{ .Render "article" }}
+			{{ end }}
+		</div>
+	</div>
+</section>
+{{ end }}
